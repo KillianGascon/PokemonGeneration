@@ -26,7 +26,7 @@ export enum PokemonStatus {
  * Interface for a generated Pokémon item.
  */
 export interface Pokemon {
-  id: string; // Unique ID from the API
+  id: string; // Unique ID from the API or generated for fusions
   name: string;
   rarity: PokemonRarity;
   imageBase64: string; // Base64 encoded image data (without prefix)

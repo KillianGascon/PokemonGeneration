@@ -120,6 +120,36 @@ export class IndexedDbService {
   }
 
   /**
+   * Adds multiple Pokémon to the 'pokemons' object store in a single transaction.
+   * @param pokemons An array of Pokémon objects to add.
+   * @returns A promise that resolves with the array of added Pokémon.
+   */
+  public async addPokemons(pokemons: Pokemon[]): Promise<Pokemon[]> {
+    return this.withTransaction<Pokemon[]>(StoreNames.Pokemons, 'readwrite', (store) => {
+      return new Promise((resolve, reject) => {
+        let addedCount = 0;
+        if (pokemons.length === 0) {
+            resolve([]);
+            return;
+        }
+        pokemons.forEach(pokemon => {
+            const request = store.add(pokemon);
+            request.onsuccess = () => {
+                addedCount++;
+                if (addedCount === pokemons.length) {
+                    resolve(pokemons);
+                }
+            };
+            request.onerror = (event: Event) => {
+                // If one fails, the entire transaction will abort.
+                reject((event.target as IDBRequest).error);
+            };
+        });
+      });
+    });
+  }
+  
+  /**
    * Retrieves all Pokémon from the 'pokemons' object store.
    * @returns A promise that resolves with an array of Pokemon objects.
    */
@@ -152,6 +182,36 @@ export class IndexedDbService {
         request.onerror = (event: Event) => {
           reject((event.target as IDBRequest).error);
         };
+      });
+    });
+  }
+
+  /**
+   * Deletes multiple Pokémon from the 'pokemons' object store in a single transaction.
+   * @param ids An array of Pokémon IDs to delete.
+   * @returns A promise that resolves when all specified Pokémon have been deleted.
+   */
+  public async deletePokemons(ids: string[]): Promise<void> {
+    return this.withTransaction<void>(StoreNames.Pokemons, 'readwrite', (store) => {
+      return new Promise((resolve, reject) => {
+        let deletedCount = 0;
+        if (ids.length === 0) {
+            resolve();
+            return;
+        }
+        ids.forEach(id => {
+            const request = store.delete(id);
+            request.onsuccess = () => {
+                deletedCount++;
+                if (deletedCount === ids.length) {
+                    resolve();
+                }
+            };
+            request.onerror = (event: Event) => {
+                // If one fails, the entire transaction will abort.
+                reject((event.target as IDBRequest).error);
+            };
+        });
       });
     });
   }

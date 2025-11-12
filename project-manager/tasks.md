@@ -19,14 +19,22 @@ This document tracks all development tasks for the Pokémon Generator applicatio
 - [x] Further refined the 'Failed to fetch' error message in `services/pokemonApiService.ts` to explicitly suggest checking server-side CORS configuration, acknowledging the external nature of this error.
 - [x] Updated `services/pokemonApiService.ts` to use `https` for the API_BASE_URL and enhanced the 'Failed to fetch' error message to include guidance on accepting self-signed certificates in the browser.
 - [x] Investigated user report that "resell does not work or is not implemented"; confirmed implementation is present and logically sound. Provided debugging guidance.
-- [x] Implemented a request timeout for the Pokémon generation API call to handle potential server-side delays and provide a clearer error message.
+- [x] Implement a request timeout for the Pokémon generation API call to handle potential server-side delays and provide a clearer error message.
 - [x] The sell functionality is not working, the button in the UI does nothing. Investigated and fixed the stale state closure bug in the confirmation modal handler.
 - [x] Collection must be stored and retrieved in the indexeddb of the visiting browser
 - [x] Implement batch generation of 4 Pokémon with a results modal.
 - [x] Enhance the collection into a searchable and filterable Pokédex.
+- [x] Implement a dynamic pricing system based on Pokémon rarity.
+- [x] Implement a Pokémon fusion system allowing users to combine two Pokémon into a new one.
+- [x] Implement a bulk selling system to allow users to sell multiple Pokémon at once, with permanent deletion and an undo feature.
+- [x] Implement a cinematic cutscene for S and S+ rank Pokémon discoveries.
+  - [x] Create base visual animation for S and S+ ranks.
+  - [x] Integrate custom soundtracks for each rank with fade-in/out effects.
+  - [x] Set up directory structure for audio assets.
+  - [x] Add audio assets to the project.
+  - [x] Fix cutscene audio playback errors by correcting asset paths.
+- [x] Remove the Pokémon Fusion feature entirely from the application, including UI, logic, data model, and API service integration. Implemented a data migration to clean up existing fused Pokémon from IndexedDB.
 
 ## In Progress
-
-- [ ] Implement a dynamic pricing system based on Pokémon rarity.
 
 ## Planned

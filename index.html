@@ -12,10 +12,71 @@
     "react/": "https://aistudiocdn.com/react@^19.2.0/",
     "react": "https://aistudiocdn.com/react@^19.2.0",
     "lucide-react": "https://aistudiocdn.com/lucide-react@^0.553.0",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/"
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.29.0"
   }
 }
 </script>
+<style>
+  .s-rank-glow-shadow {
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.8)) drop-shadow(0 0 20px rgba(59, 130, 246, 0.7));
+  }
+  .s-plus-rank-glow-shadow {
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.8)) drop-shadow(0 0 20px rgba(167, 139, 250, 0.7));
+  }
+
+  @keyframes cutscene-image-reveal {
+    0% {
+      opacity: 0;
+      transform: scale(0.7);
+      filter: brightness(0) drop-shadow(0 0 20px rgba(255, 255, 255, 0.6));
+    }
+    40% {
+      opacity: 1;
+      transform: scale(1.1);
+      filter: brightness(0) drop-shadow(0 0 40px rgba(255, 255, 255, 1));
+    }
+    70%, 100% {
+      opacity: 1;
+      transform: scale(1);
+      filter: brightness(1) drop-shadow(0 0 15px rgba(255, 255, 255, 0.5));
+    }
+  }
+
+  @keyframes cutscene-text-fade-in {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes cutscene-badge-drop-in {
+    0% {
+      opacity: 0;
+      transform: translateY(-50px) scale(0.5);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  .animate-cutscene-image-reveal {
+    animation: cutscene-image-reveal 3s ease-out forwards;
+  }
+  .animate-cutscene-text-fade-in {
+    opacity: 0; /* initial state */
+    animation: cutscene-text-fade-in 1s ease-out 2s forwards;
+  }
+  .animate-cutscene-badge-drop-in {
+    opacity: 0; /* initial state */
+    animation: cutscene-badge-drop-in 1s cubic-bezier(0.34, 1.56, 0.64, 1) 1.5s forwards;
+  }
+</style>
 </head>
 <body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen font-sans antialiased text-gray-800">
     <div id="root"></div>
